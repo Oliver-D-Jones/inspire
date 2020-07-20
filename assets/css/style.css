@@ -1,0 +1,9 @@
+body{
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 98vh;
+}
+#todo-error{
+  color: red;
+  font-size: 2em;
+}

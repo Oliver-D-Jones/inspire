@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Inspire</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body id="bg-image">
+	<header class="container-fluid">
+		<div class="row mt-2" style="justify-content: space-between;">
+			<div class="col-sm-12 col-md-3" id="dropdown">
+				<div class="dropdown">
+					<button class="btn btn-md btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span style="font-size: larger;">&#x2699;</span>
+					</button>
+					<div class="dropdown-menu text-primary" style="cursor:pointer" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" id="convert" onclick="app.weatherController.convert(event)">Celcius</a>
+						<a class="dropdown-item" data-toggle="modal" data-target="#weatherModal">Find Weather In Other City</a>
+						<a class="dropdown-item" onclick="app.imageController.getBackGroundImage()">New Back-Ground Image</a>
+						<a class="dropdown-item" onclick="app.welcomeController.switchTIme(event)">Display <span id="switchTime">Military</span> Time</a>
+						<a class="dropdown-item" onclick="app.quoteController.getQuote()">New Quote</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-3 text-light text-center" id="weather"></div>
+		</div>
+	</header>
+	<main class="container-fluid">
+		<div class="row d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+			<div class="col-sm-10 col-md-3 justify-content-center p-3 text-dark" style="opacity: .8;" id="welcome">
+			</div>
+		</div>
+	</main>
+	<footer class="container-fluid mb-2 fixed-bottom bg-dark">
+		<div class="row d-flex" style="justify-content:space-around;">
+			<div class="col-sm-12 col-md-8 py-1 text-center">
+				<a href="#" class="text-center text-light" id="quote" data-toggle="tooltip" data-placement="top"
+					title="title">Quote</a>
+			</div>
+			<div class="col-sm-12 col-md-3">
+				<button type="button" class="btn btn-block btn-primary pb-2 mr-3" data-toggle="modal" data-target="#todoModal">
+					To Do List
+				</button>
+			</div>
+		</div>
+	</footer>
+
+	<!-- The Weather Modal -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="modal fade" id="weatherModal">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Weather Service</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<iframe src="https://www.weather.gov/" allowfullscreen="true" style="min-height: 90vh;min-width: 100%;"
+								frameborder="0"></iframe>
+
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<!-- The To-Do Modal -->
+		<div class="modal fade" id="todoModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<!-- <h4 class="modal-title">T</h4> -->
+						<!-- <div class="container"> -->
+						<div id="todo-error"></div>
+						<form onsubmit="app.todoController.addTodo(event)" class="col-12 form-inline">
+							<div class="form-group">
+								<!-- <label for="todo">Text</label> -->
+								<input id="todo" class="form-control" type="text" name="todo" placeholder="Add To Your To Do List...">
+								<button type="submit" class="btn btn-sm bg-primary mx-2"><b>+</b></button>
+							</div>
+						</form>
+						<!-- </div> -->
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						<h4 class="text-center">To Do List</h4>
+						<div id="todos">
+
+						</div>
+
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- The User Modal -->
+	<div class="modal fade" id="userModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Change User</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form action="#" onsubmit="app.todoController.changeUser(event)">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Enter User Name..." name="user">
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+	<script type="module" src="app/main.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+<html>
